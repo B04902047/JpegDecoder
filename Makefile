@@ -1,6 +1,6 @@
 all: main.c
-	gcc main.c -o main.out
+	gcc main.c -o main -lm
 run: main
-	./main.out
+	./main
 clean:
-	rm main.out
+	rm main

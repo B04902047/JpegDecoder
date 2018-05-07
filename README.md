@@ -1,10 +1,14 @@
 
 # JpegDecoder
 
+## Environment
+- Machine: MacBook Air (13-inch, Early 2015)
+- OS: macOS Sierra 10.12.3
+
 ## Compile
     $ make
 ## Run
-    $ ./main.out <filePath1> [... <filePathN>]
+    $ ./main <filePath1> [... <filePathN>]
 
 ## File Structure
 

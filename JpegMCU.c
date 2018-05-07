@@ -68,6 +68,8 @@ void getComponentSizes(JpegSOF *SOF, JpegMCUList *ptr) {
 		= (unsigned char *)malloc( SOF->Nf * sizeof(unsigned char) );
 	ptr->componentSizesY
 		= (unsigned char *)malloc( SOF->Nf * sizeof(unsigned char) );
+	ptr->componentSizes
+		= (unsigned char *)malloc( SOF->Nf * sizeof(unsigned char) );
 	for (int i=0; i<SOF->Nf; i++) {
 		ptr->componentSizesX[i] = (SOF->components[i].H);
 		ptr->componentSizesY[i] = (SOF->components[i].V);
@@ -119,7 +121,6 @@ int initJpegMCUList(JpegMCUList *ptr, JpegSOF *SOF) {
 
 	ptr->X = SOF->X;
 	ptr->Y = SOF->Y;
-
 	ptr->Hmax = getHmax(SOF);
 	ptr->Vmax = getVmax(SOF);
 
@@ -134,8 +135,8 @@ int initJpegMCUList(JpegMCUList *ptr, JpegSOF *SOF) {
 	getComponentTreeIndices(ptr);
 	getComponentSizes(SOF, ptr);
 	getComponentPixelNumbers(ptr);
-	
 	//ptr->mcuBlockNumber = getMCUBlockNumber(SOF);
+
 	ptr->MCUs = (JpegMCU *)malloc( sizeof(JpegMCU) * ptr->mcuNumber );
 	for (int i=0; i<ptr->mcuNumber; i++) {
 		ptr->MCUs[i].components
@@ -146,7 +147,6 @@ int initJpegMCUList(JpegMCUList *ptr, JpegSOF *SOF) {
 				= (Block *)malloc( sizeof(Block)
 									* ptr->componentSizes[j] );
 	}
-//debugMsg("init MCU...");
 	return 1;
 }
 
