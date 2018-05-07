@@ -96,6 +96,11 @@ int MCUListToRGBMatrix(JpegMCUList *mcuList, RGBMatrix *rgbMatrix) {
 int jpegToBmp(char *filePath) {
 
 	FILE *fp = fopen(filePath, "rb");
+	if(!fp) {
+		errorMsg("File not exists");
+		return 0;
+	}
+
 	JpegMCUList mcuList;
 	freadJpeg(fp, &mcuList);
 	fclose(fp);
@@ -109,5 +114,6 @@ int jpegToBmp(char *filePath) {
 	fwriteBmp(fp, &rgbMatrix);
 	fclose(fp);
 
+	printf("%s\n", filePath);
 	return 1;
 }
